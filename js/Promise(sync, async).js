@@ -241,50 +241,50 @@ var comments = [
 //3.promise
 //4.Dom
 
-function getComments(){//ham lay noi dung comment qua mang
-    return new Promise(function(resolve, reject){
-        setTimeout(function(){
-            resolve(comments);
-        },1000)
-    })
-}
+// function getComments(){//ham lay noi dung comment qua mang
+//     return new Promise(function(resolve, reject){
+//         setTimeout(function(){
+//             resolve(comments);
+//         },1000)
+//     })
+// }
 
-function getUsersByIds(userIds){
-    return new Promise(function(resolve){
-        var results = users.filter(function(user){
-            return userIds.includes(user.id)
-        })
-        resolve(results);
-    },1000);
-}
+// function getUsersByIds(userIds){
+//     return new Promise(function(resolve){
+//         var results = users.filter(function(user){
+//             return userIds.includes(user.id)
+//         })
+//         resolve(results);
+//     },1000);
+// }
 
-getComments()
-    .then(function(comments){
-        // console.log(comments);
-        var userIds = comments.map(function(comment){
-            return comment.user_id
-        })
-       return getUsersByIds(userIds)
-            .then(function(users){
-             console.log(users);
-            return {
-                user: users,
-                comments: comments,
-            }
-          });
-        // console.log(userIds);
-    })
+// getComments()
+//     .then(function(comments){
+//         // console.log(comments);
+//         var userIds = comments.map(function(comment){
+//             return comment.user_id
+//         })
+//        return getUsersByIds(userIds)
+//             .then(function(users){
+//              console.log(users);
+//             return {
+//                 user: users,
+//                 comments: comments,
+//             }
+//           });
+//         // console.log(userIds);
+//     })
 
-    .then(function(data){
-        // console.log(data);
-        var commentBlock = document.getElementById("comment-block");
-        var html = "";
-        data.comments.forEach(function(comment){
-            var user = data.user.find(function(user){
-                return user.id === comment.user_id;
-            });
-            html += `<li> ${user.name}: ${comment.content}</li>`;
-        });
-        commentBlock.innerHTML = html;
-    });
+//     .then(function(data){
+//         // console.log(data);
+//         var commentBlock = document.getElementById("comment-block");
+//         var html = "";
+//         data.comments.forEach(function(comment){
+//             var user = data.user.find(function(user){
+//                 return user.id === comment.user_id;
+//             });
+//             html += `<li> ${user.name}: ${comment.content}</li>`;
+//         });
+//         commentBlock.innerHTML = html;
+//     });
 
